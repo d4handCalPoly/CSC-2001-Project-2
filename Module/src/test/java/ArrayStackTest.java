@@ -2,10 +2,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainTest {
-  AStack aEmptyStack = new AStack();
-  AStack aStack1 = new AStack(new String[]{"Test"});
-  AStack aStack3 = new AStack(new String[]{"Test", "Test", "Test"});
+class ArrayStackTest {
+  ArrayStack aEmptyStack = new ArrayStack();
+  ArrayStack aStack1 = new ArrayStack(new String[]{"Test"});
+  ArrayStack aStack3 = new ArrayStack(new String[]{"Test", "Test", "Test"});
 
   @Test
   void AStack() {
@@ -14,7 +14,7 @@ class MainTest {
 
   @Test
   void aEqualsFull() {
-    assertEquals("Test", new AStack(new String[]{"Test"}).peek());
+    assertEquals("Test", new ArrayStack(new String[]{"Test"}).peek());
   }
   @Test
   void aNotEquals() {
@@ -25,13 +25,13 @@ class MainTest {
 
   @Test
   void aPushEmpty() {
-    AStack stack = AStack.empty_stack();
+    ArrayStack stack = ArrayStack.empty_stack();
     stack.push("Test");
     assertEquals("Test", stack.peek());
   }
   @Test
   void aPushThree() {
-    AStack stack = AStack.empty_stack();
+    ArrayStack stack = ArrayStack.empty_stack();
     stack.push("NotTest");
     stack.push("NotTest");
     stack.push("Test");
@@ -47,12 +47,12 @@ class MainTest {
   }
   @Test
   void aPeekOne() {
-    AStack one = aStack1;
+    ArrayStack one = aStack1;
     assertEquals("Test", one.peek());
   }
   @Test
   void aPeekThree() {
-    AStack three = aEmptyStack;
+    ArrayStack three = aEmptyStack;
     three.push("NotTest");
     three.push("Test");
     three.push("NotTest");
@@ -69,13 +69,13 @@ class MainTest {
   }
   @Test
   void aPopOne() {
-    AStack one = aStack1;
+    ArrayStack one = aStack1;
     assertEquals("Test", one.pop());
     assertThrows(IndexOutOfBoundsException.class, one::pop);
   }
   @Test
   void aPopThree() {
-    AStack three = aEmptyStack;
+    ArrayStack three = aEmptyStack;
     three.push("NotTest");
     three.push("Test");
     three.push("NotTest");

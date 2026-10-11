@@ -1,19 +1,19 @@
-public class AStack {
+public class ArrayStack {
   private int length;
   private String[] list;
 
-  public AStack() {
+  public ArrayStack() {
     length = 0;
     list = new String[4];
   }
-  public AStack(String[] list) {
+  public ArrayStack(String[] list) {
     length = list.length;
     this.list = list;
   }
 
   /** returns an empty stack */
-  public static AStack empty_stack() {
-    return new AStack();
+  public static ArrayStack empty_stack() {
+    return new ArrayStack();
   }
 
   /** Add value to top of stack. Increase size of array if necessary */
