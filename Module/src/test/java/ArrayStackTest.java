@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayStackTest {
@@ -41,7 +43,7 @@ class ArrayStackTest {
   @Test
   void aPeekEmpty() {
     assertThrows(
-        IndexOutOfBoundsException.class,
+        NoSuchElementException.class,
         () -> aEmptyStack.peek()
     );
   }
@@ -63,7 +65,7 @@ class ArrayStackTest {
   @Test
   void aPopEmpty() {
     assertThrows(
-        IndexOutOfBoundsException.class,
+        NoSuchElementException.class,
         () -> aEmptyStack.pop()
     );
   }
@@ -71,7 +73,7 @@ class ArrayStackTest {
   void aPopOne() {
     ArrayStack one = aStack1;
     assertEquals("Test", one.pop());
-    assertThrows(IndexOutOfBoundsException.class, one::pop);
+    assertThrows(NoSuchElementException.class, one::pop);
   }
   @Test
   void aPopThree() {

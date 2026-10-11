@@ -1,12 +1,14 @@
+import java.util.NoSuchElementException;
+
 public class ArrayStack {
   private int length;
-  private String[] list;
+  private Object[] list;
 
   public ArrayStack() {
     length = 0;
-    list = new String[4];
+    list = new Object[4];
   }
-  public ArrayStack(String[] list) {
+  public ArrayStack(Object[] list) {
     length = list.length;
     this.list = list;
   }
@@ -17,7 +19,7 @@ public class ArrayStack {
   }
 
   /** Add value to top of stack. Increase size of array if necessary */
-  public void push(String val) {
+  public void push(Object val) {
     this.ensureNotFull();
     list[length] = val;
     length++;
@@ -34,17 +36,17 @@ public class ArrayStack {
   }
 
   /** returns top of stack */
-  public String peek() {
+  public Object peek() {
     if (this.is_empty()) {
-      throw new IndexOutOfBoundsException("empty stack");
+      throw new NoSuchElementException("empty stack");
     }
     return list[length - 1];
   }
 
   /** removes and returns top of stack */
-  public String pop() {
+  public Object pop() {
     if (this.is_empty()) {
-      throw new IndexOutOfBoundsException("empty stack");
+      throw new NoSuchElementException("empty stack");
     }
     length --;
     return list[length];
@@ -53,7 +55,7 @@ public class ArrayStack {
   /** if array is full make new list twice as big containing old list */
   private void ensureNotFull() {
     if (length >= list.length) {
-      String[] newList = new String[list.length * 2];
+      Object[] newList = new String[list.length * 2];
       for (int i = 0; i < list.length; i++) {
         newList[i] = list[i];
       }
