@@ -39,6 +39,21 @@ class ArrayStackTest {
     stack.push("Test");
     assertEquals("Test", stack.peek());
   }
+  @Test
+  void aPushOverflow() {
+    ArrayStack stack = ArrayStack.empty_stack();
+    stack.push("Test2");
+    stack.push("NotTest");
+    stack.push("NotTest");
+    stack.push("NotTest");
+    stack.push("Test");
+    assertEquals("Test", stack.peek());
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    assertEquals("Test2", stack.pop());
+  }
 
   @Test
   void aPeekEmpty() {
