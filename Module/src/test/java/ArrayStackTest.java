@@ -58,7 +58,7 @@ class ArrayStackTest {
   @Test
   void aPeekEmpty() {
     assertThrows(
-        NoSuchElementException.class,
+        IndexOutOfBoundsException.class,
         () -> aEmptyStack.peek()
     );
   }
@@ -80,7 +80,7 @@ class ArrayStackTest {
   @Test
   void aPopEmpty() {
     assertThrows(
-        NoSuchElementException.class,
+        IndexOutOfBoundsException.class,
         () -> aEmptyStack.pop()
     );
   }
@@ -88,7 +88,7 @@ class ArrayStackTest {
   void aPopOne() {
     ArrayStack one = aStack1;
     assertEquals("Test", one.pop());
-    assertThrows(NoSuchElementException.class, one::pop);
+    assertThrows(IndexOutOfBoundsException.class, one::pop);
   }
   @Test
   void aPopThree() {
