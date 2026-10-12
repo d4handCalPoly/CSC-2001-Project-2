@@ -80,8 +80,6 @@ public class Parser {
     return out.substring(0, out.length() - 1);
   }
 
-  // public
-
 
   private static boolean isOperand(String oper) {
     try {
