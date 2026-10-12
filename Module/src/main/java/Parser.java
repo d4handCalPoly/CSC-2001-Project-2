@@ -22,7 +22,7 @@ public class Parser {
     return stack.pop();
   }
 
-  public static String parseInfix(String input) {
+  public static String infixToPostFix(String input) {
     if (input == null || input.isEmpty()) {
       throw new IllegalArgumentException("empty input");
     }
@@ -78,6 +78,10 @@ public class Parser {
       out += reverse.pop() + " ";
     }
     return out.substring(0, out.length() - 1);
+  }
+
+  public static AST parseInfix(String input) {
+    return parsePostfix(infixToPostFix(input));
   }
 
 

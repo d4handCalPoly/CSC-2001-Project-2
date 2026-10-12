@@ -58,21 +58,21 @@ class ParserTest {
 
   @Test
   void InfixPrecedence() {
-    assertEquals("3 4 2 * + 5 -", Parser.parseInfix("3 + 4 * 2 - 5"));
+    assertEquals("3 4 2 * + 5 -", Parser.infixToPostFix("3 + 4 * 2 - 5"));
   }
   @Test
   void InfixRightAss() {
-    assertEquals("3 4 5 ^ ^ 6 *", Parser.parseInfix("3 ^ 4 ^ 5 * 6"));
+    assertEquals("3 4 5 ^ ^ 6 *", Parser.infixToPostFix("3 ^ 4 ^ 5 * 6"));
   }
   @Test
   void InfixParen() {
-    assertEquals("3 4 5 6 - * +", Parser.parseInfix("3 + 4 * ( 5 - 6 )"));
+    assertEquals("3 4 5 6 - * +", Parser.infixToPostFix("3 + 4 * ( 5 - 6 )"));
   }
   @Test
   void InfixHard() {
     assertEquals(
         "2 4 - 2 3 4 + 5 2 ^ * * 4 + ^",
-        Parser.parseInfix("( 2 - 4 ) ^ ( 2 * ( ( 3 + 4 ) * 5 ^ 2 ) + 4 )")
+        Parser.infixToPostFix("( 2 - 4 ) ^ ( 2 * ( ( 3 + 4 ) * 5 ^ 2 ) + 4 )")
     );
   }
 }
