@@ -102,22 +102,12 @@ public class Parser {
         oper.equals("^");
   }
 
-  /** returns true if oper1 has greater precedence than oper2. Returns false if the same */
-  private static boolean hasPrecedence(String oper1, String oper2) {
-    return getPrecedence(oper1) > getPrecedence(oper2);
-  }
-
   private static int getPrecedence(String oper) {
     return switch (oper) {
       case "+", "-" -> 1;
       case "*", "/" -> 2;
-      case "^" -> 3;
-      default -> -1;
+      default -> 3;
     };
-  }
-
-  public static boolean samePrecedence(String oper1, String oper2) {
-    return getPrecedence(oper1) == getPrecedence(oper2);
   }
 
   private static void BinopNodeConstruct(String oper, ArrayStack<AST> stack) {

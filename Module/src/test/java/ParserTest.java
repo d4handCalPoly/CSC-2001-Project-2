@@ -8,6 +8,10 @@ class ParserTest {
     assertThrows(IllegalArgumentException.class, () -> Parser.parsePostfix(""));
   }
   @Test
+  void nullPostfix() {
+    assertThrows(IllegalArgumentException.class, () -> Parser.parsePostfix(null));
+  }
+  @Test
   void badTokenPostfix() {
     assertThrows(IllegalArgumentException.class, () -> Parser.parsePostfix("2 a +"));
   }
@@ -57,6 +61,26 @@ class ParserTest {
   }
 
   @Test
+  void emptyInfix() {
+    assertThrows(IllegalArgumentException.class, () -> Parser.infixToPostFix(""));
+  }
+  @Test
+  void nullInfix() {
+    assertThrows(IllegalArgumentException.class, () -> Parser.infixToPostFix(null));
+  }
+  @Test
+  void badCharInfix() {
+    assertThrows(IllegalArgumentException.class, () -> Parser.infixToPostFix("2 a 1"));
+  }
+  @Test
+  void openParenInfix() {
+    assertThrows(IllegalArgumentException.class, () -> Parser.infixToPostFix("2 ( 3 + 1"));
+  }
+  @Test
+  void closeParenInfix() {
+    assertThrows(IllegalArgumentException.class, () -> Parser.infixToPostFix("2 * 1 )"));
+  }
+  @Test
   void InfixPrecedence() {
     assertEquals("3 4 2 * + 5 -", Parser.infixToPostFix("3 + 4 * 2 - 5"));
   }
@@ -74,5 +98,19 @@ class ParserTest {
         "2 4 - 2 3 4 + 5 2 ^ * * 4 + ^",
         Parser.infixToPostFix("( 2 - 4 ) ^ ( 2 * ( ( 3 + 4 ) * 5 ^ 2 ) + 4 )")
     );
+  }
+  @Test
+  void goodInfix() {
+    BinopNode result = new BinopNode(
+        "/",
+        new BinopNode(
+            "+",
+            new NumNode(4.0),
+            new NumNode(3.0)
+        ),
+        new NumNode(2.0)
+    );
+    AST test = Parser.parseInfix("2 * ( 3 + 4 )");
+    assertEquals(result, test);
   }
 }
