@@ -110,7 +110,25 @@ class ParserTest {
         ),
         new NumNode(2.0)
     );
-    AST test = Parser.parseInfix("2 * ( 3 + 4 )");
+    AST test = Parser.parseInfix("2 / ( 3 + 4 )");
     assertEquals(result, test);
+  }
+  @Test
+  void coverageInfix() {
+    BinopNode result = new BinopNode(
+        "*",
+        new NumNode(4.0),
+        new BinopNode(
+            "/",
+            new NumNode(3.0),
+            new NumNode(2.0)
+        )
+    );
+    AST test = Parser.parseInfix("2 / 3 * 4 ");
+    assertEquals(result, test);
+  }
+  @Test
+  public void ExponentCoverInfix() {
+    assertEquals("2 3 2 ^ ^", Parser.infixToPostFix("2 ^ 3 ^ 2"));
   }
 }

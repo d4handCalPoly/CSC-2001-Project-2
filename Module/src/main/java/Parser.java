@@ -47,8 +47,9 @@ public class Parser {
       } else if (isOperator(token)) {
         while (!stack.is_empty() && isOperator(stack.peek())) {
           boolean leftAss = !token.equals("^");
-          if ((leftAss && getPrecedence(token) <= getPrecedence(stack.peek())) ||
-              (!leftAss && getPrecedence(token) < getPrecedence(stack.peek()))) {
+          if (getPrecedence(token) < getPrecedence(stack.peek()) ||
+              (leftAss && getPrecedence(token) == getPrecedence(stack.peek())))
+          {
             output.push(stack.pop());
           } else {
             break;
