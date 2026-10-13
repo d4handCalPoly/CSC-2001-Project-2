@@ -1,4 +1,5 @@
 public class Parser {
+  /** take postfix string and convert to evaluatable BinopNode tree */
   public static AST parsePostfix(String input) {
     if (input == null || input.isEmpty()) {
       throw new IllegalArgumentException("empty input");
@@ -22,6 +23,7 @@ public class Parser {
     return stack.pop();
   }
 
+  /** convert infix string to postfix string */
   public static String infixToPostFix(String input) {
     if (input == null || input.isEmpty()) {
       throw new IllegalArgumentException("empty input");
@@ -81,11 +83,13 @@ public class Parser {
     return out.substring(0, out.length() - 1);
   }
 
+  /** use parsePostFix() to convert infix string to evaluatable BinopNode tree */
   public static AST parseInfix(String input) {
     return parsePostfix(infixToPostFix(input));
   }
 
 
+  /** checks if given string is a number */
   private static boolean isOperand(String oper) {
     try {
         Double.parseDouble(oper);
@@ -95,6 +99,7 @@ public class Parser {
       }
   }
 
+  /** checks if given value is a valid operator */
   private static boolean isOperator(String oper) {
     return oper.equals("+") ||
         oper.equals("-") ||
@@ -103,6 +108,7 @@ public class Parser {
         oper.equals("^");
   }
 
+  /** Gives integer representing precedence of operator. Assumes given either operator or parentheses is given */
   private static int getPrecedence(String oper) {
     return switch (oper) {
       case "+", "-" -> 1;
@@ -111,6 +117,7 @@ public class Parser {
     };
   }
 
+  /** makes BinopNode with the postfix stack and given an operator */
   private static void BinopNodeConstruct(String oper, ArrayStack<AST> stack) {
     if (stack.size() < 2) {
       throw new IllegalArgumentException("insufficient operands");
